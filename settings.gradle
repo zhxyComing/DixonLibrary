@@ -1,0 +1,3 @@
+include ':dlibrary'
+include ':app'
+rootProject.name = "DixonLibrary"

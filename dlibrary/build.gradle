@@ -1,0 +1,56 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'com.novoda.bintray-release'
+
+android {
+    compileSdkVersion 29
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 29
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        consumerProguardFiles "consumer-rules.pro"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+
+    //事件总线
+    implementation 'org.greenrobot:eventbus:3.1.1'
+    //json
+    implementation 'com.google.code.gson:gson:2.8.6'
+}
+
+//publish to local directory
+def versionName = "1.0.1"
+group "com.dixon.library"
+version versionName
+
+uploadArchives { //当前项目可以发布到本地文件夹中
+    repositories {
+        mavenDeployer {
+            repository(url: uri('/Users/dixon.xu/repo')) //定义本地maven仓库的地址
+        }
+    }
+}
+
+publish {
+    userOrg = 'dixonxu'
+    repoName = 'library'
+    groupId = 'com.dixon.library'
+    artifactId = 'dlibrary'
+    publishVersion = '1.0.0'
+    desc = 'base library'
+    website = ''
+}
