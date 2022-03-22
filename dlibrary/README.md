@@ -1,5 +1,7 @@
 # 常用基础库集合
 
+implementation 'com.dixon.library:dlibrary:1.0.1'
+
 ## 一、使用说明
 
 在 Application 中调用 `DUtil.init(Application)` 完成初始化。
